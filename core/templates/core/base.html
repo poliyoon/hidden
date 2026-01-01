@@ -32,7 +32,8 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <!-- Link to your CSS if needed, or stick to CDN Tailwind -->
+
     <style>
         body {
             background-color: #121212;
@@ -96,9 +97,7 @@
         </div>
     </footer>
 
-    {% if debug %}
-    <script src="{% static 'django_browser_reload/reload.js' %}"></script>
-    {% endif %}
 </body>
+
 
 </html>
