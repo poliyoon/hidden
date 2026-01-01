@@ -1,0 +1,133 @@
+{% extends 'core/base.html' %}
+
+{% block title %}The Black Book | The Hidden{% endblock %}
+
+{% block content %}
+<div class="space-y-12">
+    <!-- Page Header -->
+    <div class="text-center space-y-4">
+        <h1 class="serif text-5xl text-muted-gold italic">The Black Book</h1>
+        <p class="text-off-white/40 text-xs uppercase tracking-[0.5em] font-light">Curated Excellence. Members Only.</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap justify-center gap-4 border-b border-muted-gold/10 pb-8">
+        <button onclick="filterVenues('all', this)"
+            class="filter-btn px-6 py-2 rounded-full bg-muted-gold text-deep-black text-xs font-bold uppercase tracking-widest transition-all">All</button>
+        <button onclick="filterVenues('dining', this)"
+            class="filter-btn px-6 py-2 rounded-full border border-muted-gold/20 text-off-white/60 text-xs font-bold uppercase tracking-widest hover:border-muted-gold hover:text-muted-gold transition-all">Dining</button>
+        <button onclick="filterVenues('stay', this)"
+            class="filter-btn px-6 py-2 rounded-full border border-muted-gold/20 text-off-white/60 text-xs font-bold uppercase tracking-widest hover:border-muted-gold hover:text-muted-gold transition-all">Stays</button>
+        <button onclick="filterVenues('wonder', this)"
+            class="filter-btn px-6 py-2 rounded-full border border-muted-gold/20 text-off-white/60 text-xs font-bold uppercase tracking-widest hover:border-muted-gold hover:text-muted-gold transition-all">Wonders</button>
+        <button onclick="filterVenues('event', this)"
+            class="filter-btn px-6 py-2 rounded-full border border-muted-gold/20 text-off-white/60 text-xs font-bold uppercase tracking-widest hover:border-muted-gold hover:text-muted-gold transition-all">Events</button>
+    </div>
+
+    <!-- Venue Grid -->
+    <div id="venue-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Venue Card 1 -->
+        <div class="venue-card group cursor-pointer transition-all duration-500" data-category="dining">
+            <div class="aspect-[4/5] overflow-hidden rounded-lg bg-dark-charcoal border border-muted-gold/10 relative">
+                <!-- Image Placeholder -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-deep-black via-transparent to-transparent opacity-60">
+                </div>
+                <div
+                    class="absolute inset-0 flex items-center justify-center text-muted-gold/20 italic serif text-lg group-hover:scale-110 transition-transform duration-700">
+                    Exclusive Venue 01</div>
+
+                <div class="absolute bottom-6 left-6 right-6 space-y-2">
+                    <span
+                        class="text-[10px] uppercase tracking-widest text-muted-gold border border-muted-gold/30 px-2 py-1">Dining
+                        | Paris</span>
+                    <h3 class="serif text-2xl text-off-white group-hover:text-muted-gold transition-colors">L'Ombre
+                        Clandestine</h3>
+                </div>
+            </div>
+            <p class="mt-4 text-xs text-off-white/40 leading-relaxed line-clamp-2">비밀 정원 속에 숨겨진 파리의 가장 프라이빗한 다이닝 경험. 오직
+                선정된 소수만이 그 존재를 압니다.</p>
+        </div>
+
+        <!-- Venue Card 2 -->
+        <div class="venue-card group cursor-pointer transition-all duration-500" data-category="stay">
+            <div class="aspect-[4/5] overflow-hidden rounded-lg bg-dark-charcoal border border-muted-gold/10 relative">
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-deep-black via-transparent to-transparent opacity-60">
+                </div>
+                <div
+                    class="absolute inset-0 flex items-center justify-center text-muted-gold/20 italic serif text-lg group-hover:scale-110 transition-transform duration-700">
+                    Exclusive Venue 02</div>
+
+                <div class="absolute bottom-6 left-6 right-6 space-y-2">
+                    <span
+                        class="text-[10px] uppercase tracking-widest text-muted-gold border border-muted-gold/30 px-2 py-1">Stay
+                        | Kyoto</span>
+                    <h3 class="serif text-2xl text-off-white group-hover:text-muted-gold transition-colors">The Zen
+                        Sanctuary</h3>
+                </div>
+            </div>
+            <p class="mt-4 text-xs text-off-white/40 leading-relaxed line-clamp-2">교토의 숲속 깊은 곳, 소음으로부터 완전히 차단된 정적의 공간.
+                영혼의 휴식을 위한 프라이빗 료칸.</p>
+        </div>
+
+        <!-- Venue Card 3 -->
+        <div class="venue-card group cursor-pointer transition-all duration-500" data-category="wonder">
+            <div class="aspect-[4/5] overflow-hidden rounded-lg bg-dark-charcoal border border-muted-gold/10 relative">
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-deep-black via-transparent to-transparent opacity-60">
+                </div>
+                <div
+                    class="absolute inset-0 flex items-center justify-center text-muted-gold/20 italic serif text-lg group-hover:scale-110 transition-transform duration-700">
+                    Exclusive Venue 03</div>
+
+                <div class="absolute bottom-6 left-6 right-6 space-y-2">
+                    <span
+                        class="text-[10px] uppercase tracking-widest text-muted-gold border border-muted-gold/30 px-2 py-1">Wonder
+                        | Iceland</span>
+                    <h3 class="serif text-2xl text-off-white group-hover:text-muted-gold transition-colors">Crystal Cave
+                        Retreat</h3>
+                </div>
+            </div>
+            <p class="mt-4 text-xs text-off-white/40 leading-relaxed line-clamp-2">아이슬란드의 빙하 아래에서 즐기는 샴페인 테이스팅. 대자연의
+                경이로움과 럭셔리의 결합.</p>
+        </div>
+    </div>
+
+    <!-- Load More -->
+    <div class="text-center pt-12">
+        <button onclick="requestCuration()"
+            class="border border-muted-gold/40 text-muted-gold px-12 py-3 text-sm tracking-widest uppercase hover:bg-muted-gold hover:text-deep-black transition-all">Request
+            More Curation</button>
+    </div>
+</div>
+
+<script>
+    function filterVenues(category, btn) {
+        // Update Buttons
+        document.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('bg-muted-gold', 'text-deep-black');
+            b.classList.add('border', 'border-muted-gold/20', 'text-off-white/60');
+        });
+        btn.classList.add('bg-muted-gold', 'text-deep-black');
+        btn.classList.remove('border', 'border-muted-gold/20', 'text-off-white/60');
+
+        // Filter Cards
+        const cards = document.querySelectorAll('.venue-card');
+        cards.forEach(card => {
+            if (category === 'all' || card.dataset.category === category) {
+                card.style.display = 'block';
+                setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 10);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => { card.style.display = 'none'; }, 500);
+            }
+        });
+    }
+
+    function requestCuration() {
+        alert("The Private Curator: 전담 매니저에게 큐레이션 요청이 전달되었습니다. 곧 연락드리겠습니다.");
+    }
+</script>
+{% endblock %}

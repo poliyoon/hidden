@@ -1,0 +1,198 @@
+{
+  "meta": {
+    "project": "The Hidden (The Private Curator)",
+    "date": "2025-12-22",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "The Hidden is a closed, high-end travel and dining curation platform designed exclusively for High Net Worth Individuals (HNWI) who seek scarce, private, and verified luxury experiences. The platform combines human touch with technology to deliver personalized travel and dining recommendations while maintaining utmost privacy and exclusivity.",
+  "core_goals": [
+    "Deliver a privacy-first platform exclusively for HNWI, emphasizing scarcity of information and human touch.",
+    "Enable deep user profiling through AI chat-based preference surveys to curate unique experiences tailored to individual tastes.",
+    "Provide a curated, private database called the Black Book of exclusive venues and experiences not publicly accessible.",
+    "Maintain a minimalist and luxurious UI/UX consistent with the Quiet Luxury theme to reflect elegance and exclusivity.",
+    "Ensure secure, invite-only authentication to protect the platform's exclusivity and user data."
+  ],
+  "key_features": [
+    "Deep Profiling via AI chat-based preference survey for understanding detailed user preferences.",
+    "Black Book: An exclusive database of private and vetted travel and dining venues for HNWI.",
+    "Concierge Button allowing users to contact a human manager directly for personalized assistance (no automated booking).",
+    "Home Dashboard acting as the main entry point post-login showcasing curated content.",
+    "Profile Page showing user details and preferences editable by the user.",
+    "Secure Authentication system with login and logout, including an invite-only access mechanism.",
+    "High-quality minimalist UI using Tailwind CSS and HTMX within Django templates for fast and SEO-friendly interactivity."
+  ],
+  "user_flow_summary": [
+    "User logs in via invite-only authentication.",
+    "Upon login, user lands on the Home dashboard displaying curated luxury content and navigation options.",
+    "User accesses the Profiling section to complete an AI-powered chat survey that captures their preferences deeply.",
+    "User browses the Black Book to explore exclusive venues and experiences relevant to their profile.",
+    "From any page, user can use the Concierge Button to request direct human assistance for bookings or inquiries.",
+    "User can view and update their profile information in the Profile section.",
+    "User can securely log out, ending their session and redirecting to the login page."
+  ],
+  "validation_criteria": [
+    "The platform must restrict access solely to authenticated users who have been invited; no open registrations allowed.",
+    "Profiling AI chat survey should accurately record and save user preferences for use in content curation.",
+    "Black Book data must be securely stored, accurately displayed, and accessible only to logged-in users.",
+    "Concierge Button triggers a direct communication channel to a human manager with no automation.",
+    "The UI matches the Quiet Luxury design system including color scheme, typography, and minimalist layout.",
+    "All pages load successfully with expected data and interactions tested through the documented API endpoints.",
+    "Authentication flows (login/logout) redirect and manage sessions correctly and securely.",
+    "Performance and SEO benchmarks met by using Django templates with Tailwind CSS and HTMX without front-end heavy frameworks."
+  ],
+  "code_summary": {
+    "tech_stack": [
+      "Python",
+      "Django",
+      "SQLite",
+      "Tailwind CSS",
+      "HTMX"
+    ],
+    "features": [
+      {
+        "name": "Home",
+        "description": "Main dashboard for HNWI curation platform. Requires login.",
+        "files": [
+          "core/views.py",
+          "core/templates/core/index.html"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Home API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/": {
+              "get": {
+                "summary": "Display Home Page",
+                "responses": {
+                  "200": {
+                    "description": "Success"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Profile",
+        "description": "User profile page. Displays user details and preferences.",
+        "files": [
+          "core/views.py",
+          "core/templates/core/profile.html"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Profile API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/profile/": {
+              "get": {
+                "summary": "Display Profile Page",
+                "responses": {
+                  "200": {
+                    "description": "Success"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Profiling",
+        "description": "AI Chat-based preference survey for deep user profiling.",
+        "files": [
+          "core/views.py",
+          "core/templates/core/profiling.html"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Profiling API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/profiling/": {
+              "get": {
+                "summary": "Display Profiling Page",
+                "responses": {
+                  "200": {
+                    "description": "Success"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Black Book",
+        "description": "Database of curated, private venues.",
+        "files": [
+          "core/views.py",
+          "core/templates/core/black_book.html"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Black Book API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/black-book/": {
+              "get": {
+                "summary": "Display Black Book Page",
+                "responses": {
+                  "200": {
+                    "description": "Success"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Authentication",
+        "description": "Login and Logout functionality.",
+        "files": [
+          "config/urls.py"
+        ],
+        "api_doc": {
+          "openapi": "3.0.0",
+          "info": {
+            "title": "Auth API",
+            "version": "1.0.0"
+          },
+          "paths": {
+            "/accounts/login/": {
+              "get": {
+                "summary": "Login Page",
+                "responses": {
+                  "200": {
+                    "description": "Success"
+                  }
+                }
+              }
+            },
+            "/accounts/logout/": {
+              "post": {
+                "summary": "Logout",
+                "responses": {
+                  "302": {
+                    "description": "Redirect to Home"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}

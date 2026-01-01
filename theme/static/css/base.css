@@ -1,0 +1,28 @@
+
+/* Deep Black & Muted Gold Theme for The Hidden */
+:root {
+  --bg-color: #121212;
+  --text-color: #F5F5F5;
+  --gold-accent: #D4AF37;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--gold-accent);
+  font-family: 'Playfair Display', serif;
+}
+
+.gold-text { color: var(--gold-accent); }
+.gold-border { border-color: var(--gold-accent); }
+.gold-bg { background-color: var(--gold-accent); }
+
+/* Custom Scrollbar for Luxury Feel */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #1a1a1a; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-accent); }

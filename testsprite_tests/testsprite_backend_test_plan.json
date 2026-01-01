@@ -1,0 +1,32 @@
+[
+  {
+    "id": "TC001",
+    "title": "test_home_page_access_for_authenticated_users",
+    "description": "Verify that the home page loads successfully with status 200 for authenticated users and displays curated luxury content."
+  },
+  {
+    "id": "TC002",
+    "title": "test_profile_page_displays_user_details_and_preferences",
+    "description": "Verify that the profile page loads successfully with status 200 and correctly displays the logged-in user's details and preferences."
+  },
+  {
+    "id": "TC003",
+    "title": "test_profiling_page_displays_ai_chat_survey",
+    "description": "Verify that the profiling page loads successfully with status 200 and presents the AI chat-based preference survey for deep user profiling."
+  },
+  {
+    "id": "TC004",
+    "title": "test_black_book_page_access_and_data_security",
+    "description": "Verify that the black book page loads successfully with status 200 only for logged-in users and displays the curated, private venues securely."
+  },
+  {
+    "id": "TC005",
+    "title": "test_login_page_accessibility",
+    "description": "Verify that the login page loads successfully with status 200 and presents the invite-only authentication mechanism."
+  },
+  {
+    "id": "TC006",
+    "title": "test_logout_functionality_and_redirect",
+    "description": "Verify that the logout endpoint successfully logs out the user, ends the session, and redirects to the home or login page with status 302."
+  }
+]

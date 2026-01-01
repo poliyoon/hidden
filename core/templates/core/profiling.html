@@ -1,0 +1,162 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Deep Profiling | The Hidden{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto flex flex-col h-[70vh]">
+    <!-- Chat Header -->
+    <div class="mb-8 text-center">
+        <h2 class="serif text-3xl text-muted-gold">Deep Profiling</h2>
+        <p class="text-off-white/40 text-xs uppercase tracking-widest mt-2">Personal Preference Analysis</p>
+    </div>
+
+    <!-- Chat Messages Container -->
+    <div id="chat-container" class="flex-1 overflow-y-auto space-y-6 pr-4 custom-scrollbar">
+        <!-- AI Message -->
+        <div class="flex items-start space-x-4">
+            <div
+                class="w-8 h-8 rounded-full border border-muted-gold/30 flex items-center justify-center bg-dark-charcoal text-[10px] text-muted-gold serif">
+                AI
+            </div>
+            <div
+                class="bg-dark-charcoal/50 border border-muted-gold/10 p-4 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl max-w-[80%]">
+                <p class="text-sm leading-relaxed">반갑습니다. 당신의 취향을 깊이 있게 이해하기 위한 개인 맞춤형 프로파일링을 시작합니다.</p>
+                <p class="text-sm leading-relaxed mt-2 text-muted-gold">가장 선호하는 여행의 분위기는 무엇인가요?</p>
+            </div>
+        </div>
+
+        <!-- Options / Buttons -->
+        <div class="flex flex-wrap gap-3 ml-12">
+            <button onclick="addMessage('고요하고 한적한 자연 속 휴식')"
+                class="px-5 py-2 rounded-full border border-muted-gold/20 text-xs hover:bg-muted-gold hover:text-deep-black transition-all">고요하고
+                한적한 자연 속 휴식</button>
+            <button onclick="addMessage('역동적이고 화려한 대도시의 밤')"
+                class="px-5 py-2 rounded-full border border-muted-gold/20 text-xs hover:bg-muted-gold hover:text-deep-black transition-all">역동적이고
+                화려한 대도시의 밤</button>
+            <button onclick="addMessage('역사와 전통이 숨쉬는 문화 탐방')"
+                class="px-5 py-2 rounded-full border border-muted-gold/20 text-xs hover:bg-muted-gold hover:text-deep-black transition-all">역사와
+                전통이 숨쉬는 문화 탐방</button>
+        </div>
+    </div>
+
+    <!-- Chat Input area -->
+    <div class="mt-8 relative border-t border-muted-gold/10 pt-6">
+        <input type="text" id="chat-input" placeholder="Tell me more about your preferences..."
+            onkeypress="if(event.key === 'Enter') handleSend()"
+            class="w-full bg-dark-charcoal border border-muted-gold/20 rounded-full py-4 px-6 text-sm focus:outline-none focus:border-muted-gold/50 transition-all pr-16 bg-opacity-50">
+        <button id="send-btn" onclick="handleSend()"
+            class="absolute right-2 top-[30px] w-10 h-10 bg-muted-gold rounded-full flex items-center justify-center text-deep-black hover:bg-off-white transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                    d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        "가장 선호하는 여행의 분위기는 무엇인가요?",
+        "식사 시 가장 중요하게 생각하는 요소는 무엇인가요? (예: 맛, 분위기, 프라이버시)",
+        "멤버십을 통해 어떤 특별한 경험을 기대하시나요?",
+        "감사합니다. 당신의 취향을 완벽하게 분석했습니다. 이제 당신만을 위한 Black Book을 확인해보세요."
+    ];
+    let currentStep = 0;
+
+    function handleSend() {
+        const input = document.getElementById('chat-input');
+        const text = input.value.trim();
+        if (text) {
+            addMessage(text, 'user');
+            input.value = '';
+            processAIResponse(text);
+        }
+    }
+
+    function addMessage(text, sender) {
+        const container = document.getElementById('chat-container');
+        const div = document.createElement('div');
+
+        if (sender === 'user') {
+            div.className = 'flex items-start justify-end space-x-4';
+            div.innerHTML = `
+                <div class="bg-muted-gold/10 border border-muted-gold/20 p-4 rounded-tl-2xl rounded-br-2xl rounded-bl-2xl max-w-[80%] text-right">
+                    <p class="text-sm leading-relaxed">${text}</p>
+                </div>
+                <div class="w-8 h-8 rounded-full border border-muted-gold/30 flex items-center justify-center bg-muted-gold text-[10px] text-deep-black serif font-bold">YOU</div>
+            `;
+        } else {
+            div.className = 'flex items-start space-x-4';
+            div.innerHTML = `
+                <div class="w-8 h-8 rounded-full border border-muted-gold/30 flex items-center justify-center bg-dark-charcoal text-[10px] text-muted-gold serif">AI</div>
+                <div class="bg-dark-charcoal/50 border border-muted-gold/10 p-4 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl max-w-[80%]">
+                    <p class="text-sm leading-relaxed">${text}</p>
+                </div>
+            `;
+        }
+
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+
+        // Remove option buttons after use
+        if (sender === 'user') {
+            const options = document.querySelector('.flex.flex-wrap.gap-3.ml-12');
+            if (options) options.remove();
+        }
+    }
+
+    function processAIResponse(userText) {
+        currentStep++;
+        const container = document.getElementById('chat-container');
+
+        // Thinking indicator
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'flex items-start space-x-4 animate-pulse';
+        typingDiv.innerHTML = `
+            <div class="w-8 h-8 rounded-full border border-muted-gold/30 flex items-center justify-center bg-dark-charcoal text-[10px] text-muted-gold serif">AI</div>
+            <div class="bg-dark-charcoal/50 border border-muted-gold/10 p-4 rounded-tr-2xl rounded-br-2xl rounded-bl-2xl">
+                <p class="text-sm text-muted-gold/60">분석 중...</p>
+            </div>
+        `;
+        container.appendChild(typingDiv);
+        container.scrollTop = container.scrollHeight;
+
+        setTimeout(() => {
+            typingDiv.remove();
+            if (currentStep < questions.length) {
+                addMessage(questions[currentStep], 'ai');
+            }
+
+            // Add buttons for final step redirection
+            if (currentStep === questions.length - 1) {
+                const redirectDiv = document.createElement('div');
+                redirectDiv.className = 'flex gap-3 ml-12 mt-4';
+                redirectDiv.innerHTML = `
+                    <a href="/black-book/" class="px-6 py-2 bg-muted-gold text-deep-black text-xs font-bold rounded-full uppercase tracking-widest hover:bg-off-white transition-all">Go to Black Book</a>
+                `;
+                container.appendChild(redirectDiv);
+                container.scrollTop = container.scrollHeight;
+            }
+        }, 1200);
+    }
+</script>
+
+<style>
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #D4AF3744;
+        border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #D4AF37;
+    }
+</style>
+{% endblock %}

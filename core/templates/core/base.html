@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}The Hidden{% endblock %}</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100..900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-black': '#121212',
+                        'dark-charcoal': '#1A1A1A',
+                        'muted-gold': '#D4AF37',
+                        'off-white': '#F5F5F5',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <style>
+        body {
+            background-color: #121212;
+            color: #F5F5F5;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="bg-deep-black text-off-white font-sans min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="border-b border-muted-gold/20 bg-dark-charcoal/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <span class="serif text-2xl font-bold tracking-widest text-muted-gold">THE HIDDEN</span>
+                </div>
+
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        {% if user.is_authenticated %}
+                        <a href="/"
+                            class="text-off-white hover:text-muted-gold px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="{% url 'profile' %}"
+                            class="text-off-white hover:text-muted-gold px-3 py-2 text-sm font-medium transition-colors">Profile</a>
+                        <form action="{% url 'logout' %}" method="post" class="inline">
+                            {% csrf_token %}
+                            <button type="submit"
+                                class="border border-muted-gold/40 text-muted-gold hover:bg-muted-gold hover:text-deep-black px-4 py-2 rounded text-sm font-medium transition-all">Log
+                                out</button>
+                        </form>
+                        {% else %}
+                        <a href="{% url 'login' %}"
+                            class="bg-muted-gold text-deep-black px-6 py-2 rounded text-sm font-bold uppercase tracking-widest hover:bg-off-white transition-all">Member
+                            Login</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar (Optional Mobile View) -->
+    <div class="flex flex-1 overflow-hidden">
+        <main class="flex-1 overflow-y-auto p-8">
+            <div class="max-w-5xl mx-auto">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-muted-gold/10 py-8 bg-dark-charcoal/30">
+        <div class="text-center text-off-white/40 text-xs tracking-widest uppercase">
+            &copy; 2025 THE HIDDEN - THE PRIVATE CURATOR
+        </div>
+    </footer>
+
+    {% if debug %}
+    <script src="{% static 'django_browser_reload/reload.js' %}"></script>
+    {% endif %}
+</body>
+
+</html>

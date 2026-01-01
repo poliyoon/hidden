@@ -1,0 +1,135 @@
+{
+  "tech_stack": ["Python", "Django", "SQLite", "Tailwind CSS", "HTMX"],
+  "features": [
+    {
+      "name": "Home",
+      "description": "Main dashboard for HNWI curation platform. Requires login.",
+      "files": ["core/views.py", "core/templates/core/index.html"],
+      "api_doc": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "Home API",
+          "version": "1.0.0"
+        },
+        "paths": {
+          "/": {
+            "get": {
+              "summary": "Display Home Page",
+              "responses": {
+                "200": {
+                  "description": "Success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Profile",
+      "description": "User profile page. Displays user details and preferences.",
+      "files": ["core/views.py", "core/templates/core/profile.html"],
+      "api_doc": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "Profile API",
+          "version": "1.0.0"
+        },
+        "paths": {
+          "/profile/": {
+            "get": {
+              "summary": "Display Profile Page",
+              "responses": {
+                "200": {
+                  "description": "Success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Profiling",
+      "description": "AI Chat-based preference survey for deep user profiling.",
+      "files": ["core/views.py", "core/templates/core/profiling.html"],
+      "api_doc": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "Profiling API",
+          "version": "1.0.0"
+        },
+        "paths": {
+          "/profiling/": {
+            "get": {
+              "summary": "Display Profiling Page",
+              "responses": {
+                "200": {
+                  "description": "Success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Black Book",
+      "description": "Database of curated, private venues.",
+      "files": ["core/views.py", "core/templates/core/black_book.html"],
+      "api_doc": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "Black Book API",
+          "version": "1.0.0"
+        },
+        "paths": {
+          "/black-book/": {
+            "get": {
+              "summary": "Display Black Book Page",
+              "responses": {
+                "200": {
+                  "description": "Success"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Authentication",
+      "description": "Login and Logout functionality.",
+      "files": ["config/urls.py"],
+      "api_doc": {
+        "openapi": "3.0.0",
+        "info": {
+          "title": "Auth API",
+          "version": "1.0.0"
+        },
+        "paths": {
+          "/accounts/login/": {
+            "get": {
+              "summary": "Login Page",
+              "responses": {
+                "200": {
+                  "description": "Success"
+                }
+              }
+            }
+          },
+          "/accounts/logout/": {
+            "post": {
+              "summary": "Logout",
+              "responses": {
+                "302": {
+                  "description": "Redirect to Home"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

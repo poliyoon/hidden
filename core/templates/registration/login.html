@@ -1,0 +1,54 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Login | The Hidden{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-20">
+    <div class="bg-dark-charcoal/50 border border-muted-gold/10 p-10 rounded-lg backdrop-blur-sm">
+        <div class="text-center mb-10">
+            <h1 class="serif text-4xl text-muted-gold italic">Welcome Back</h1>
+            <p class="text-off-white/40 text-xs uppercase tracking-[0.3em] mt-3">The Private Curator</p>
+        </div>
+
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+
+            {% if form.errors %}
+            <div class="bg-red-500/10 border border-red-500/20 text-red-500 text-xs p-3 rounded mb-6 text-center">
+                Your username and password didn't match. Please try again.
+            </div>
+            {% endif %}
+
+            <div class="space-y-2">
+                <label for="id_username" class="block text-xs uppercase tracking-widest text-off-white/60">Membership
+                    ID</label>
+                <input type="text" name="username" id="id_username" required
+                    class="w-full bg-deep-black border border-muted-gold/20 rounded py-3 px-4 text-sm focus:outline-none focus:border-muted-gold/50 transition-all text-off-white">
+            </div>
+
+            <div class="space-y-2">
+                <label for="id_password" class="block text-xs uppercase tracking-widest text-off-white/60">Security
+                    Key</label>
+                <input type="password" name="password" id="id_password" required
+                    class="w-full bg-deep-black border border-muted-gold/20 rounded py-3 px-4 text-sm focus:outline-none focus:border-muted-gold/50 transition-all text-off-white">
+            </div>
+
+            <div class="pt-4">
+                <button type="submit"
+                    class="w-full bg-muted-gold text-deep-black text-xs font-bold uppercase tracking-widest py-4 rounded hover:bg-off-white transition-all">
+                    Access Portal
+                </button>
+            </div>
+
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+
+        <div class="mt-10 text-center border-t border-muted-gold/10 pt-6">
+            <p class="text-off-white/30 text-[10px] uppercase tracking-widest">Invite-Only Membership</p>
+            <p
+                class="text-muted-gold/60 text-[10px] mt-2 italic cursor-pointer hover:text-muted-gold transition-colors">
+                Request Access →</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

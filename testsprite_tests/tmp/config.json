@@ -1,0 +1,17 @@
+{
+  "status": "commited",
+  "type": "backend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:8000",
+  "backendAuthType": "public",
+  "executionArgs": {
+    "projectName": "the hidden",
+    "projectPath": "c:\\Users\\윤창기\\Desktop\\the hidden",
+    "testIds": [],
+    "additionalInstruction": "Use 'http://127.0.0.1:8000' as the BASE_URL. Ensure 'allow_redirects=False' is used when verifying 302 redirects for unauthenticated access. For the logout test (TC006), if you are doing a POST request, note that it requires a CSRF token in Django. If you cannot easily obtain a CSRF token, focus on the GET accessibility or simple redirection logic.",
+    "envs": {
+      "API_KEY": "sk-user-QivvV-qXWRYnHGhnaSV6wDCX__ybfj5TMfvJ4X38SiwoS_L9QmrpQPSnvvVxIHqbMO3OvTR_6kg-PJ_5sqwPLsxjqM6LheCCFiG_ZkRoFEX2b7NOFy-_iOCzcDrQwQAQpTk"
+    }
+  },
+  "proxy": "http://8151993d-fa5e-4e4d-b5e9-8c3614f267d0:nihC4XzZJxuTnF20tH02mL6vzk6ax180@tun.testsprite.com:8080"
+}

@@ -1,0 +1,120 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Member Profile | The Hidden{% endblock %}
+
+{% block content %}
+<div class="space-y-12">
+    <!-- Page Header -->
+    <div class="flex flex-col md:flex-row justify-between items-end border-b border-muted-gold/10 pb-8 gap-6">
+        <div class="space-y-2">
+            <h1 class="serif text-4xl text-muted-gold italic">Member Profile</h1>
+            <p class="text-off-white/40 text-xs uppercase tracking-[0.3em] font-light">Exclusive Membership No. #{{
+                user.id|add:1000 }}</p>
+        </div>
+        <div class="flex gap-4">
+            <span
+                class="px-4 py-1 border border-muted-gold/40 text-muted-gold text-[10px] uppercase tracking-widest rounded-full bg-muted-gold/5">Black
+                Tier</span>
+            <span
+                class="px-4 py-1 border border-off-white/20 text-off-white/40 text-[10px] uppercase tracking-widest rounded-full">Verified</span>
+        </div>
+    </div>
+
+    <!-- Profile Grid -->
+    <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Left Sidebar: Basic Info -->
+        <div class="space-y-8">
+            <div class="bg-dark-charcoal/50 border border-muted-gold/10 p-8 rounded-lg">
+                <div
+                    class="w-24 h-24 rounded-full border border-muted-gold/20 flex items-center justify-center bg-deep-black text-3xl serif text-muted-gold mb-6 mx-auto">
+                    {{ user.username|slice:":1"|upper }}
+                </div>
+                <div class="text-center space-y-4">
+                    <div>
+                        <h2 class="text-xl font-semibold">{{ user.username|capfirst }}</h2>
+                        <p class="text-sm text-off-white/40">{{ user.email }}</p>
+                    </div>
+                    <button
+                        class="w-full border border-muted-gold/20 py-3 text-[10px] uppercase tracking-widest hover:bg-muted-gold hover:text-deep-black transition-all">Edit
+                        Credentials</button>
+                </div>
+            </div>
+
+            <div class="bg-dark-charcoal/50 border border-muted-gold/10 p-8 rounded-lg space-y-4">
+                <h3 class="text-xs uppercase tracking-widest text-muted-gold font-bold">Privacy Settings</h3>
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-off-white/60">Stealth Mode</span>
+                        <span class="text-muted-gold">Active</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-off-white/60">Direct Notification</span>
+                        <span class="text-off-white/30">Disabled</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Content: Curation & Activity -->
+        <div class="lg:col-span-2 space-y-8">
+            <!-- Curation Profile Summary -->
+            <div class="bg-dark-charcoal/30 border border-muted-gold/10 p-8 rounded-lg space-y-6">
+                <div class="flex justify-between items-center">
+                    <h3 class="serif text-2xl text-off-white italic">Curation Preferences</h3>
+                    <a href="{% url 'profiling' %}"
+                        class="text-[10px] uppercase tracking-widest text-muted-gold hover:text-off-white transition-colors">Retake
+                        AI Survey →</a>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-4 bg-deep-black/50 border border-muted-gold/5 rounded space-y-2">
+                        <p class="text-[10px] uppercase tracking-widest text-off-white/30">Primary Aesthetic</p>
+                        <p class="text-sm">Quiet Luxury & Minimalist Nature</p>
+                    </div>
+                    <div class="p-4 bg-deep-black/50 border border-muted-gold/5 rounded space-y-2">
+                        <p class="text-[10px] uppercase tracking-widest text-off-white/30">Experience Tier</p>
+                        <p class="text-sm">High-Privacy Ultra-Exclusive</p>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <p class="text-xs text-off-white/40 leading-relaxed italic">"AI Curator Note: Your preferences lean
+                        towards serene landscapes and discreet dining experiences. We are currently searching for hidden
+                        gems in Kyoto and Iceland that match your signature style."</p>
+                </div>
+            </div>
+
+            <!-- Recent Collections -->
+            <div class="space-y-6">
+                <h3 class="serif text-2xl text-off-white italic">Saved in Black Book</h3>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div
+                        class="p-5 bg-dark-charcoal/50 border border-muted-gold/10 rounded-lg flex justify-between items-center group cursor-pointer hover:border-muted-gold/30 transition-all">
+                        <div class="space-y-1">
+                            <p class="text-sm text-off-white group-hover:text-muted-gold">L'Ombre Clandestine</p>
+                            <p class="text-[10px] text-off-white/30 uppercase tracking-widest">Dining | Paris</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4 text-muted-gold/40 group-hover:text-muted-gold" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                    <div
+                        class="p-5 bg-dark-charcoal/50 border border-muted-gold/10 rounded-lg flex justify-between items-center group cursor-pointer hover:border-muted-gold/30 transition-all">
+                        <div class="space-y-1">
+                            <p class="text-sm text-off-white group-hover:text-muted-gold">The Zen Sanctuary</p>
+                            <p class="text-[10px] text-off-white/30 uppercase tracking-widest">Stay | Kyoto</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4 text-muted-gold/40 group-hover:text-muted-gold" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
