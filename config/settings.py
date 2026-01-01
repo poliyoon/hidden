@@ -65,15 +65,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# 2026-01-01 18:20
+# 2026-01-01 18:25
 DATABASES = {
-    'default': dj_database_url.config(
-        env='POSTGRES_URL',
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+if os.environ.get('POSTGRES_URL'):
+    DATABASES['default'] = dj_database_url.parse(os.environ.get('POSTGRES_URL'))
+elif os.environ.get('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.parse(os.environ.get('DATABASE_URL'))
 
 
 # Password validation
